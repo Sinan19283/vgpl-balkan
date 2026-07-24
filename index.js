@@ -24,19 +24,19 @@ const client = new Client({
     ]
 });
 
-// CONFIGURATION - PASS DEINE CHANNEL- & ROLLEN-IDs HIER AN:
+// CONFIGURATION — DEINE DREI KANAL- & KATEGORIE-IDs SIND JETZT EINGETRAGEN:
 const CONFIG = {
     TOKEN: process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.trim() : '',
    
     // Channels
-    REGISTRATION_PANEL_CHANNEL_ID: 'DEINE_PANEL_KANAL_ID',      // Kanal für das Anmelde-Panel (#register-here)
-    ADMIN_LOG_CHANNEL_ID: 'DEINE_ADMIN_KANAL_ID',               // Privater Admin-Kanal (#registration-requests)
-    TICKET_CATEGORY_ID: 'DEINE_TICKET_KATEGORIE_ID',            // Kategorie für die Team-Tickets
+    REGISTRATION_PANEL_CHANNEL_ID: '1530253505854701639', // Kanal für das Anmelde-Panel (#register-here)
+    ADMIN_LOG_CHANNEL_ID: '1530256811180167229',          // Privater Admin-Kanal (#registration-requests)
+    TICKET_CATEGORY_ID: '1530252998213898441',             // Kategorie für die Team-Tickets
    
     // Roles
-    ADMIN_ROLE_NAME: 'Admin',                                  // Name der Admin-Rolle
-    HEAD_ADMIN_ROLE_NAME: 'Head Admin',                        // Name der Head Admin-Rolle
-    MANAGER_ROLE_NAME: 'Pro League'                            // Rolle, die der Manager nach Akzeptieren bekommt
+    ADMIN_ROLE_NAME: 'Admin',                             // Name der Admin-Rolle
+    HEAD_ADMIN_ROLE_NAME: 'Head Admin',                   // Name der Head Admin-Rolle
+    MANAGER_ROLE_NAME: 'Pro League'                       // Rolle, die der Manager nach Akzeptieren bekommt
 };
 
 // Express Webserver for Render Keep-Alive
