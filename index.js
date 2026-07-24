@@ -29,7 +29,7 @@ const CONFIG = {
     TOKEN: process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.trim() : '',
    
     // Channels
-    REGISTRATION_PANEL_CHANNEL_ID: 'DEINE_PANEL_KANAL_ID',      // Kanal, wo das Panel steht (#register-here)
+    REGISTRATION_PANEL_CHANNEL_ID: 'DEINE_PANEL_KANAL_ID',      // Kanal für das Anmelde-Panel (#register-here)
     ADMIN_LOG_CHANNEL_ID: 'DEINE_ADMIN_KANAL_ID',               // Privater Admin-Kanal (#registration-requests)
     TICKET_CATEGORY_ID: 'DEINE_TICKET_KATEGORIE_ID',            // Kategorie für die Team-Tickets
    
@@ -260,7 +260,7 @@ client.on('interactionCreate', async (interaction) => {
             return;
         }
 
-        // 3. ADMIN ACCEPTS TEAM (FEIER NUR DIRAET IM TICKET)
+        // 3. ADMIN ACCEPTS TEAM (FEIER NUR EXKLUSIV IM TICKET)
         if (interaction.isButton() && interaction.customId.startsWith('accept_team_')) {
             await interaction.deferUpdate();
 
@@ -285,7 +285,7 @@ client.on('interactionCreate', async (interaction) => {
                 await managerMember.roles.add(managerRole).catch(() => null);
             }
 
-            // POST BEAUTIFUL CELEBRATION EMBED ONLY IN TICKET CHANNEL
+            // POST BEAUTIFUL CELEBRATION EMBED ONLY INSIDE TICKET CHANNEL
             const ticketChannel = await guild.channels.fetch(ticketChannelId).catch(() => null);
             if (ticketChannel) {
                 const beautifulEmbed = new EmbedBuilder()
