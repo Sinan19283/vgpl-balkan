@@ -24,13 +24,13 @@ const client = new Client({
     ]
 });
 
-// CONFIGURATION — DEINE DREI KANAL- & KATEGORIE-IDs SIND JETZT EINGETRAGEN:
+// CONFIGURATION — DEINE KANAL- & KATEGORIE-IDs:
 const CONFIG = {
     TOKEN: process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN.trim() : '',
    
     // Channels
-    REGISTRATION_PANEL_CHANNEL_ID: '1530253505854701639', // Kanal für das Anmelde-Panel (#register-here)
-    ADMIN_LOG_CHANNEL_ID: '1530256811180167229',          // Privater Admin-Kanal (#registration-requests)
+    REGISTRATION_PANEL_CHANNEL_ID: '1530253505854701639', // Kanal für das Anmelde-Panel (#team-applications)
+    ADMIN_LOG_CHANNEL_ID: '1530256811180167229',          // Privater Admin-Kanal
     TICKET_CATEGORY_ID: '1530252998213898441',             // Kategorie für die Team-Tickets
    
     // Roles
@@ -61,15 +61,16 @@ client.once('ready', async () => {
 
             if (!hasPanel) {
                 const embed = new EmbedBuilder()
-                    .setTitle('🏆 VGP Balkan — Team Registration')
+                    .setTitle('🏆 VGP BALKAN — TEAM REGISTRATION')
                     .setDescription(
-                        'Welcome to the official **VGP Balkan** league registration!\n\n' +
-                        'To register your team for the upcoming EA SPORTS FC 26 season, click the button below and fill out the form.\n\n' +
-                        '📋 **Requirements:**\n' +
-                        '• Official League Team Name & Exact In-Game Club Name\n' +
-                        '• Active Team Manager on Discord\n' +
-                        '• Min. 7 Active Squad Members\n\n' +
-                        'Click **"Register Team"** below to submit your application!'
+                        'Welcome to the official team registration for the upcoming **VGP Balkan Season**! ⚽\n\n' +
+                        'Want to compete with your club in the league? Register your team now and secure your spot in the competition!\n\n' +
+                        '📋 **Registration Requirements:**\n' +
+                        '• ⚽ **Team Name:** Official League Team Name & Exact In-Game Club Name\n' +
+                        '• 👑 **Manager:** Active contact person on Discord with EA ID\n' +
+                        '• 👥 **Squad:** Minimum of 7 active players in the team\n\n' +
+                        '--------------------------------------------------\n' +
+                        '💡 *Click **"⚽ Register Team"** below to fill out the form. A private ticket will automatically be created for your team!*'
                     )
                     .setColor('#FFD700')
                     .setThumbnail(client.user.displayAvatarURL())
@@ -148,7 +149,7 @@ client.on('interactionCreate', async (interaction) => {
             return;
         }
 
-        // 2. FORM SUBMISSION -> CREATE TICKET WITH ADMIN & HEAD ADMIN ACCESS
+        // 2. FORM SUBMISSION -> CREATE TICKET WITH ADMIN ACCESS
         if (interaction.isModalSubmit() && interaction.customId === 'modal_team_registration') {
             await interaction.deferReply({ ephemeral: true });
 
@@ -260,7 +261,7 @@ client.on('interactionCreate', async (interaction) => {
             return;
         }
 
-        // 3. ADMIN ACCEPTS TEAM (FEIER NUR EXKLUSIV IM TICKET)
+        // 3. ADMIN ACCEPTS TEAM (CELEBRATION ONLY IN TICKET)
         if (interaction.isButton() && interaction.customId.startsWith('accept_team_')) {
             await interaction.deferUpdate();
 
